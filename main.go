@@ -40,7 +40,7 @@ func main() {
 	defer sqliteDatabase.Close()
 
 	if !tableCheck(sqliteDatabase, "expense") {
-		createTable(sqliteDatabase)
+		createTable(sqliteDatabase, "expense")
 	}
 
 	instertExpense(sqliteDatabase, 15, "alma")
@@ -50,8 +50,8 @@ func main() {
 
 }
 
-func createTable(db *sql.DB) {
-	log.Println("Create expense table...")
+func createTable(db *sql.DB, tableName string) {
+	log.Println("Create table..." + tableName)
 	statement, err := db.Prepare(createTableExpense)
 
 	if err != nil {
